@@ -1,11 +1,7 @@
 # GNUmakefile
 
-debug=on
 swiftv=3
 timeswiftc=no
-spm=no
-xcodebuild=no
-brew=yes
 
 NOZE_DID_INCLUDE_CONFIG_MAKE=yes
 
@@ -18,13 +14,7 @@ UNAME_S := $(shell uname -s)
 
 # System specific configuration
 
-USE_BREW=no
-
 ifeq ($(UNAME_S),Darwin)
-  ifeq ($(USE_APXS),no)
-    xcodebuild=yes
-  endif
-
   # lookup toolchain
 
   SWIFT_TOOLCHAIN_BASEDIR=/Library/Developer/Toolchains
@@ -53,34 +43,6 @@ else # Linux
   SHARED_LIBRARY_SUFFIX=.so
 
   SWIFT_RUNTIME_LIBS = Foundation swiftCore
-endif
-
-
-ifeq ($(xcodebuild),yes)
-  USE_XCODEBUILD=yes
-endif
-
-
-# APR/APU default setup (Homebrew handled above)
-
-ifeq (,$(APR_CONFIG))
-  APR_CONFIG=$(shell which apr-1-config)
-  ifeq (,$(APU_CONFIG))
-    APU_CONFIG=$(shell which apu-1-config)
-  endif
-endif
-ifneq (,$(APR_CONFIG))
-  APR_INCLUDE_DIRS = $(shell $(APR_CONFIG) --includedir)
-  APR_CFLAGS       = $(shell $(APR_CONFIG) --cflags)
-  APR_LDFLAGS      = $(shell $(APR_CONFIG) --ldflags)
-  APR_LIBS         = $(shell $(APR_CONFIG) --libs)
-
-  ifneq (,$(APU_CONFIG))
-    APR_INCLUDE_DIRS += $(shell $(APU_CONFIG) --includedir)
-    # APU has no --cflags
-    APR_LDFLAGS += $(shell $(APU_CONFIG) --ldflags)
-    APR_LIBS    += $(shell $(APU_CONFIG) --libs)
-  endif
 endif
 
 
@@ -171,16 +133,3 @@ SWIFT_INTERNAL_LINK_FLAGS    += -L$(SWIFT_BUILD_DIR)
 SWIFT_BUILD_TOOL=$(SWIFT_BIN) build $(SWIFT_INTERNAL_BUILD_FLAGS)
 SWIFT_TEST_TOOL =$(SWIFT_BIN) test  $(SWIFT_INTERNAL_TEST_FLAGS)
 SWIFT_CLEAN_TOOL=$(SWIFT_BIN) build --clean
-
-
-# Module Maps
-
-ifeq ($(UNAME_S),Darwin)
-  ifeq ($(USE_BREW),yes) # use Homebrew locations
-    APACHE_MODULE_MAPS=$(PACKAGE_DIR)/mod_swift/Apache2/brew
-  else
-    APACHE_MODULE_MAPS=$(PACKAGE_DIR)/mod_swift/Apache2/xcode8
-  endif
-else
-  APACHE_MODULE_MAPS=$(PACKAGE_DIR)/mod_swift/Apache2/linux
-endif
