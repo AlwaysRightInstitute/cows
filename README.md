@@ -3,6 +3,7 @@
 ![Swift3](https://img.shields.io/badge/swift-3-blue.svg)
 ![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
 ![tuxOS](https://img.shields.io/badge/os-tuxOS-green.svg?style=flat)
+![Travis](https://travis-ci.org/AlwaysRightInstitute/cows.svg?branch=develop)
 
 > 400+ ASCII 🐮s
 
