@@ -12,7 +12,7 @@ if [[ "$TRAVIS_OS_NAME" == "Linux" ]]; then
        curl libcurl4-openssl-dev \
        libedit-dev \
        python2.7 python2.7-dev \
-       libxml2 apache2 apache2-dev
+       libxml2
 
     sudo update-alternatives --quiet --install /usr/bin/clang clang /usr/bin/clang-3.6 100
     sudo update-alternatives --quiet --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.6 100
