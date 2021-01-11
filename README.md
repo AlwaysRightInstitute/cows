@@ -5,19 +5,13 @@
 ![Swift5](https://img.shields.io/badge/swift-5-blue.svg)
 ![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
 ![tuxOS](https://img.shields.io/badge/os-tuxOS-green.svg?style=flat)
-![Travis](https://travis-ci.org/AlwaysRightInstitute/cows.svg?branch=master)
+![Wasm](https://img.shields.io/badge/os-Wasm-green.svg?style=flat)
 
 > 400+ ASCII 🐮s
 
 The list is just an array of strings and can be used wherever.
 
 ![](https://cloud.githubusercontent.com/assets/170270/13090998/a9cdd6b0-d52b-11e5-83ec-614143c9a3bb.png)
-
-## Swift
-
-Swift modules cannot contain resources, hence the cows are compiled into code
-cows. Code cows are pretty slow to compile due to the excellence of the
-compiler.
 
 ## Examples
 
@@ -113,14 +107,63 @@ let someCow = vaca()
 
 ## API
 
-### allCows()
+### `allCows`
 
 Returns an array of cows.
 
-### vaca()
+Usage:
+```swift
+#!/usr/bin/swift sh
+import cows // @AlwaysRightInstitute
+
+for cow in cows.allCows {
+  print("Cow:")
+  print(cow)
+  print("---")
+}
+```
+
+### `vaca()`
 
 Returns a random cow.
 
+Usage:
+```swift
+#!/usr/bin/swift sh
+import cows // @AlwaysRightInstitute
+
+print(cows.vaca())
+```
+
+## `vaca` Commandline Tool
+
+The Swift 5 package now includes a commandline tool called `vaca`. When invoked
+w/ no arguments it returns a random cow. Otherwise it tries to lookup a cow
+matching the argument.
+
+Example:
+```bash
+$ swift run vaca
+        iiiiIiiii
+         '|o o|`
+   ________\_/
+ / |        |
+#  ||ww____||
+   ||      ||
+   ~~      ~~
+ Happy Hannucow!
+
+$ swift run vaca compiler
+          (__)
+        /  .\/.     ______
+       |  /\_|     |      \
+       |  |___     |       |
+       |   ---@    |_______|
+    *  |  |   ----   |    |
+     \ |  |_____
+      \|________|
+CompuCow Discovers Bug in Compiler
+```
 
 ## Related
 
