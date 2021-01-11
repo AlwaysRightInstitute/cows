@@ -79,4 +79,5 @@ Release
 
 *~
 *.o
+.swiftpm
 
