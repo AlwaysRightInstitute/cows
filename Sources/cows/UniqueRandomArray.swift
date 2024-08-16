@@ -39,6 +39,10 @@
     fileprivate func arc4random_uniform(_ v : UInt32) -> UInt32 { // sigh
       return UInt32(rand() % Int32(v))
     }
+  #elseif SKIP
+    fileprivate func arc4random_uniform(_ v : UInt32) -> UInt32 {
+        return UInt32(Math.abs(java.security.SecureRandom.getInstanceStrong().nextInt(Int32(v))))
+    }
   #else
     import func Darwin.arc4random_uniform
   #endif
